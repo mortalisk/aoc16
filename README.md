@@ -1,24 +1,10 @@
-# Aoc
+Advent of Code
+______________
 
-**TODO: Add description**
+Solutions for http://adventofcode.com/2016
 
-## Installation
+Run each puzzle with mix run -e N[n].solve
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+example: mix run -e N1.solve
 
-  1. Add `aoc` to your list of dependencies in `mix.exs`:
-
-    ```elixir
-    def deps do
-      [{:aoc, "~> 0.1.0"}]
-    end
-    ```
-
-  2. Ensure `aoc` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:aoc]]
-    end
-    ```
 

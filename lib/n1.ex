@@ -1,4 +1,4 @@
-defmodule Aoc do
+defmodule N1 do
   def solve do
     File.read!("input")
     |> String.strip()
@@ -14,5 +14,6 @@ defmodule Aoc do
           ("R" <> steps, {:s, total}) -> {:w, total - String.to_integer(steps)}
           ("R" <> steps, {:e, total}) -> {:s, total - String.to_integer(steps)}
         end)
+    |> IO.inspect()
   end
 end

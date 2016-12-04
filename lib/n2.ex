@@ -21,5 +21,6 @@ defmodule N2 do
     |> Enum.drop(1)
     |> Enum.map(&to_string/1)
     |> Enum.join()
+    |> IO.puts()
   end
 end
