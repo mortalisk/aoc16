@@ -27,14 +27,25 @@ defmodule N5 do
                 |> Integer.parse()
              case i do
                :error -> :error
-               {i, _} -> {i, String.at(hash, 6)}
+               {ix, _} -> if ix < 8, do: {ix, String.at(hash, 6)}, else: :error
              end
           end)
     |> Stream.filter(fn
             (:error) -> false
             (_) -> true
           end)
-    |> Enum.take(8)
+    |> Enum.reduce_while([], fn(a = {i, _char}, acc) ->
+            IO.inspect(a)
+            IO.inspect(acc)
+            acc =
+              if Enum.find(acc, &(elem(&1, 0) == i)) == nil do
+                [a | acc]
+              else
+                acc
+              end
+            if Enum.count(acc) < 8, do: {:cont, acc}, else: {:halt, acc}
+          end)
+    |> IO.inspect()
     |> Enum.sort_by(&(elem(&1, 0)))
     |> Enum.map(&(elem(&1, 1)))
     |> Enum.to_list()
