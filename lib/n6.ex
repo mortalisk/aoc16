@@ -1,8 +1,8 @@
 defmodule N6 do
 
-  def solve do
+  def decrypt(comp, startval) do
     freq=
-      "testin"
+      "input6"
       |> File.stream!()
       |> Stream.map(&String.graphemes/1)
       |> Stream.map(&Enum.with_index/1)
@@ -17,8 +17,8 @@ defmodule N6 do
     0..n
     |> Enum.reduce([], fn(i, acc) ->
           char =
-            Enum.reduce(freq[i], {?z, 0}, fn({c, n}, {smallc, smalln}) ->
-              if n > smalln do
+            Enum.reduce(freq[i], {?z, startval}, fn({c, n}, {smallc, smalln}) ->
+              if comp.(n, smalln) do
                 {c, n}
               else
                 {smallc, smalln}
@@ -30,6 +30,10 @@ defmodule N6 do
     |>Enum.reverse()
     |>IO.puts()
   end
+
+  def solve, do: decrypt(&(&1 > &2), 0)
+
+  def solve2, do: decrypt(&(&1 < &2), 10000)
 
 
 end
